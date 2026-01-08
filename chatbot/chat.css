@@ -223,7 +223,7 @@ body{
 
   .messages{
     flex: 1;
-    margin-bottom: 70px; /* input ke liye space */
+    margin-bottom: -70px; /* input ke liye space */
   }
 }
 
