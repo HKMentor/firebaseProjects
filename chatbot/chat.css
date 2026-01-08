@@ -25,7 +25,7 @@ body{
   background:linear-gradient(135deg,#055f86,#0f62d5);
   backdrop-filter: blur(14px);
   border-radius:20px;
-  overflow:hidden;
+  /* overflow:hidden; */
   animation:fadeIn 0.8s ease;
 }
 
