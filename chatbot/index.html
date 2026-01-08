@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat App – Login</title>
+  
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="main-container">
+
+    <!-- 🌿 Left Image Panel -->
+    <div class="image-panel">
+      <img src="./images/pexels-padrinan-1111370.jpg" alt="Chat illustration" />
+      <div class="overlay">
+        <h1>Stay Connected 🤍</h1>
+        <p>Share your thoughts, express freely, and make real connections.</p>
+      </div>
+    </div>
+
+    <!-- 🌿 Right Form Panel -->
+    <div class="form-panel">
+      <h2>Welcome to Chat App</h2>
+      <p class="subtext">Sign up or log in to start chatting!</p>
+
+      <input type="email" id="email" placeholder="Enter your email" />
+      <input type="password" id="password" placeholder="Enter your password" />
+
+      <button id="signup" class="btn">Sign Up</button>
+      <button id="login" class="btn outline">Log In</button>
+
+      <!-- ✅ Google Button FIX -->
+      <button id="google-btn" class="google-btn">
+        <img
+          src="https://developers.google.com/identity/images/g-logo.png"
+          alt="Google"
+        />
+        Continue with Google
+      </button>
+
+      <p class="note">
+        Use any email (password ≥ 6 characters).  
+        After signup/login you'll choose a username.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Firebase App -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+/* =====================
+   GLOBAL
+===================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#e7e8eb,#f5f3f1,#fcfbfa);
+  color:#fff;
+}
+
+/* =====================
+   MAIN CONTAINER
+===================== */
+.chat-container{
+  width:95%;
+  max-width:900px;
+  height:90vh;
+  display:flex;
+  background:linear-gradient(135deg,#055f86,#0f62d5);
+  backdrop-filter: blur(14px);
+  border-radius:20px;
+  overflow:hidden;
+  animation:fadeIn 0.8s ease;
+}
+
+/* =====================
+   CHAT BOX
+===================== */
+.chat-box{
+  flex:2;
+  display:flex;
+  flex-direction:column;
+  padding:15px;
+}
+
+/* HEADER */
+.chat-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 15px;
+  background:#ffffffd6;
+  border-radius:12px;
+}
+
+.chat-header h1{
+  font-size:1.2rem;
+  font-weight:600;
+  color:#151412;
+}
+
+#logout-btn{
+  background:linear-gradient(135deg,#055f86,#0f62d5);
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#logout-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 12px rgba(200,255,160,0.6);
+}
+
+/* =====================
+   MESSAGES
+===================== */
+/* 💭 Messages Area */
+.messages {
+  flex: 1;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 10px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.63);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+.messages::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+}
+
+/*  Individual Messages */
+.message {
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  max-width: 70%;
+  word-wrap: break-word;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.message.user {
+  background: rgba(107, 142, 35, 0.9);
+  align-self: flex-end;
+  color: #fff;
+}
+.message.bot {
+  background: rgba(90, 120, 80, 0.75);
+  align-self: flex-start;
+  color: #fff;
+}
+.message.user:hover,
+.message.bot:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 8px rgba(220, 255, 180, 0.35);
+}
+
+/* ⌨ Input Area - Stacked inside box */
+.chat-input {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px;
+  gap: 8px;
+  width: 100%;
+  max-width: 500px;
+  margin: 12px auto 0;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.chat-input input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.chat-input input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(160, 190, 120, 0.4);
+}
+
+.send-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #03172c, #03121f);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.send-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(210, 255, 150, 0.5);
+}
+
+
+/* =====================
+   SIDE INFO
+===================== */
+.side-info{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+  background:rgba(255,255,255,0.06);
+  text-align:center;
+}
+
+.side-info img{
+  width:90%;
+  border-radius:14px;
+  margin-bottom:12px;
+  filter:brightness(0.8) sepia(0.4);
+  transition:0.4s;
+}
+
+.side-info img:hover{
+  transform:scale(1.05);
+  filter:brightness(1);
+}
+
+.side-info p{
+  font-size:0.9rem;
+  color:#eee7d6;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media(max-width:900px){
+  .chat-container{
+    flex-direction:column;
+    height:100vh;
+    border-radius:0;
+  }
+
+  .side-info{
+    display:none;
+  }
+
+  .chat-input{
+    position:fixed;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:92%;
+  }
+
+  .messages{
+    margin-bottom:90px;
+  }
+}
+
+/* =====================
+   ANIMATIONS
+===================== */
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(0.95);}
+  to{opacity:1;transform:scale(1);}
+}
+
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}

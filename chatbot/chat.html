@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Room</title>
+
+  <link rel="stylesheet" href="chat.css" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+<div class="chat-container">
+
+  <!-- CHAT AREA -->
+  <div class="chat-box">
+
+    <header class="chat-header">
+      <h1>💬 Chat Room</h1>
+      <button id="logout-btn">Logout</button>
+    </header>
+
+    <div id="messages" class="messages"></div>
+
+    <div class="chat-input">
+      <input type="text" id="message" placeholder="Type your message..." />
+      <button onclick="sendMessage()" class="send-btn">Send</button>
+    </div>
+
+  </div>
+
+  <!-- SIDE INFO -->
+  <aside class="side-info">
+    <img src="./images/pexels-anete-lusina-5239715.jpg" alt="Chat illustration">
+    <p>Great conversations start with a hello.</p>
+  </aside>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
