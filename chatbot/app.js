@@ -271,8 +271,18 @@ function renderMessage(data, messageId, isUpdate=false) {
     card.addEventListener("mouseleave", () => btnContainer.style.display="none");
   }
 
-  setTimeout(()=>messageBox.scrollTop=messageBox.scrollHeight,10);
+  setTimeout(()=>messageBox.scrollTop=messageBox.scrollHeight,100);
 }
+function scrollToBottom() {
+  const messageBox = document.getElementById("messages");
+  messageBox.scrollTop = messageBox.scrollHeight;
+}
+
+// Jab message send ho
+setTimeout(scrollToBottom, 100);
+
+// Keyboard open hone pe bhi scroll
+window.addEventListener("resize", scrollToBottom);
 
 
 function formatTime(ts){

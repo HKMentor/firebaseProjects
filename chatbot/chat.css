@@ -266,3 +266,20 @@ body{
     width: 92%;
   }
 }
+
+
+/* scroIII */
+@media (max-width: 900px){
+  .messages{
+    margin-bottom: 120px; /* input ke liye extra space */
+  }
+
+  .chat-input{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    z-index: 999;
+  }
+}
