@@ -271,7 +271,7 @@ function renderMessage(data, messageId, isUpdate=false) {
     card.addEventListener("mouseleave", () => btnContainer.style.display="none");
   }
 
-  setTimeout(()=>messageBox.scrollTop=messageBox.scrollHeight,100);
+  setTimeout(()=>messageBox.scrollTop=messageBox.scrollHeight,10);
 }
 
 
