@@ -242,32 +242,28 @@ body{
 }
 
 
-@media(max-width:900px){
-
-  body{
-    align-items:stretch;
-    justify-content:flex-start;
-  }
+@media (max-width: 900px) {
 
   .chat-container{
-    flex-direction:column;
-    height:100dvh;
-    border-radius:0;
+    flex-direction: column;
+    height: 100vh;
+    border-radius: 0;
   }
 
   .side-info{
-    display:none;
-  }
-
-  .chat-input{
-    position:sticky;
-    bottom:10px;
-    width:92%;
-    margin:0 auto;
+    display: none;
   }
 
   .messages{
-    flex:1;
-    margin-bottom:0;
+    flex: 1;
+    margin-bottom: 80px; /* input ke liye space */
+  }
+
+  .chat-input{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
   }
 }
