@@ -50,7 +50,7 @@ const provider = new GoogleAuthProvider();
 const db = getDatabase(app);
 
 /* =======================
-   INPUTS (🔥 FIXED)
+   INPUTS
 ======================= */
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -130,9 +130,8 @@ document.getElementById("logout-btn")?.addEventListener("click", () => {
 });
 
 /* =======================
-   CHAT MESSAGE SEND
+   CHAT MESSAGE SEND + MOBILE SCROLL
 ======================= */
-
 function sendMessageFunc() {
   const messageInput = document.getElementById("message");
   const message = messageInput.value.trim();
@@ -152,15 +151,17 @@ function sendMessageFunc() {
   });
 
   messageInput.value = "";
+  scrollToBottom();
 }
-
 
 document.getElementById("message")?.addEventListener("keypress", e => {
   if (e.key === "Enter") sendMessageFunc();
 });
 window.sendMessage = sendMessageFunc;
 
-
+/* =======================
+   TYPING INDICATOR
+======================= */
 const typingRef = ref(db, "typing");
 const username = localStorage.getItem("username");
 
@@ -169,15 +170,20 @@ document.getElementById("message")?.addEventListener("input", () => {
   setTimeout(() => set(ref(db, `typing/${username}`), false), 2000);
 });
 
-
 onValue(typingRef, snapshot => {
   const typingDiv = document.getElementById("typing-indicator");
   const typingUsers = [];
-  snapshot.forEach(child => { if(child.val() && child.key !== username) typingUsers.push(child.key); });
-  typingDiv.textContent = typingUsers.length ?`${typingUsers.join(", ")} is typing...` : "";
+  snapshot.forEach(child => { 
+    if(child.val() && child.key !== username) typingUsers.push(child.key); 
+  });
+  typingDiv.textContent = typingUsers.length 
+    ? `${typingUsers.join(", ")} is typing...` 
+    : "";
 });
 
-
+/* =======================
+   MESSAGE LISTENER
+======================= */
 onChildAdded(ref(db, "messages"), snapshot => renderMessage(snapshot.val(), snapshot.key));
 onChildChanged(ref(db, "messages"), snapshot => renderMessage(snapshot.val(), snapshot.key, true));
 onChildRemoved(ref(db, "messages"), snapshot => {
@@ -185,7 +191,9 @@ onChildRemoved(ref(db, "messages"), snapshot => {
   if (card) card.remove();
 });
 
-
+/* =======================
+   RENDER MESSAGE
+======================= */
 function renderMessage(data, messageId, isUpdate=false) {
   const messageBox = document.getElementById("messages");
   const currentUser = localStorage.getItem("userEmail") || "noemail";
@@ -229,7 +237,6 @@ function renderMessage(data, messageId, isUpdate=false) {
   if(isUserMessage){
     const btnContainer = card.querySelector(".msg-btns");
 
- 
     const editBtn = document.createElement("button");
     editBtn.textContent = "✏";
     editBtn.style.cssText = "background:#1e6091;color:white;border:none;padding:4px 6px;border-radius:4px;cursor:pointer;font-size:0.8rem;";
@@ -246,7 +253,6 @@ function renderMessage(data, messageId, isUpdate=false) {
         update(ref(db, "messages/"+messageId), {text:newText, edited:true});
       }
     });
-
 
     const delBtn = document.createElement("button");
     delBtn.textContent = "🗑";
@@ -271,20 +277,27 @@ function renderMessage(data, messageId, isUpdate=false) {
     card.addEventListener("mouseleave", () => btnContainer.style.display="none");
   }
 
-  setTimeout(()=>messageBox.scrollTop=messageBox.scrollHeight,100);
+  scrollToBottom();
 }
-function scrollToBottom() {
+
+/* =======================
+   SCROLL FUNCTION
+======================= */
+function scrollToBottom(){
   const messageBox = document.getElementById("messages");
-  messageBox.scrollTop = messageBox.scrollHeight;
+  setTimeout(() => {
+    messageBox.scrollTop = messageBox.scrollHeight + 100;
+  }, 100);
 }
 
-// Jab message send ho
-setTimeout(scrollToBottom, 100);
-
-// Keyboard open hone pe bhi scroll
+/* Keyboard open/resize detection */
 window.addEventListener("resize", scrollToBottom);
+window.addEventListener("focusin", scrollToBottom);
 
 
+/* =======================
+   TIME FORMAT
+======================= */
 function formatTime(ts){
   const date = new Date(ts);
   let hours = date.getHours();
@@ -293,3 +306,9 @@ function formatTime(ts){
   hours = hours%12||12;
   return `${hours}:${minutes} ${ampm}`;
 }
+
+/* =======================
+   MOBILE RESIZE / KEYBOARD SCROLL
+======================= */
+window.addEventListener("resize", scrollToBottom);
+window.addEventListener("focusin", scrollToBottom);

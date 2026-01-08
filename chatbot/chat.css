@@ -1,6 +1,4 @@
-/* =====================
-   GLOBAL
-===================== */
+/* ===================== GLOBAL ===================== */
 *{
   margin:0;
   padding:0;
@@ -15,11 +13,10 @@ body{
   align-items:center;
   background: linear-gradient(135deg,#e7e8eb,#f5f3f1,#fcfbfa);
   color:#fff;
+  overflow:hidden;
 }
 
-/* =====================
-   MAIN CONTAINER
-===================== */
+/* ===================== MAIN CONTAINER ===================== */
 .chat-container{
   width:95%;
   max-width:900px;
@@ -32,14 +29,13 @@ body{
   animation:fadeIn 0.8s ease;
 }
 
-/* =====================
-   CHAT BOX
-===================== */
+/* ===================== CHAT BOX ===================== */
 .chat-box{
   flex:2;
   display:flex;
   flex-direction:column;
   padding:15px;
+  height:100%;
 }
 
 /* HEADER */
@@ -50,6 +46,7 @@ body{
   padding:10px 15px;
   background:#ffffffd6;
   border-radius:12px;
+  flex-shrink:0;
 }
 
 .chat-header h1{
@@ -73,9 +70,7 @@ body{
   box-shadow:0 0 12px rgba(200,255,160,0.6);
 }
 
-/* =====================
-   MESSAGES
-===================== */
+/* ===================== MESSAGES ===================== */
 .messages {
   flex: 1;
   margin: 12px 0;
@@ -85,15 +80,17 @@ body{
   background: rgba(255, 255, 255, 0.63);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
 }
+
 .messages::-webkit-scrollbar {
   width: 6px;
 }
+
 .messages::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 6px;
 }
 
-/*  Individual Messages */
+/* INDIVIDUAL MESSAGES */
 .message {
   margin-bottom: 8px;
   padding: 8px 12px;
@@ -103,23 +100,26 @@ body{
   font-size: 0.9rem;
   transition: all 0.3s ease;
 }
+
 .message.user {
   background: rgba(107, 142, 35, 0.9);
   align-self: flex-end;
   color: #fff;
 }
+
 .message.bot {
   background: rgba(90, 120, 80, 0.75);
   align-self: flex-start;
   color: #fff;
 }
+
 .message.user:hover,
 .message.bot:hover {
   transform: scale(1.02);
   box-shadow: 0 0 8px rgba(220, 255, 180, 0.35);
 }
 
-/* ⌨ Input Area - Stacked inside box */
+/* INPUT AREA */
 .chat-input {
   display: flex;
   flex-direction: column;
@@ -133,6 +133,7 @@ body{
   margin: 12px auto 0;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  flex-shrink:0;
 }
 
 .chat-input input {
@@ -146,6 +147,7 @@ body{
   font-size: 0.9rem;
   transition: all 0.3s ease;
 }
+
 .chat-input input:focus {
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 8px rgba(160, 190, 120, 0.4);
@@ -162,15 +164,13 @@ body{
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .send-btn:hover {
   transform: scale(1.03);
   box-shadow: 0 0 10px rgba(210, 255, 150, 0.5);
 }
 
-
-/* =====================
-   SIDE INFO
-===================== */
+/* SIDE INFO */
 .side-info{
   flex:1;
   display:flex;
@@ -200,9 +200,7 @@ body{
   color:#eee7d6;
 }
 
-/* =====================
-   RESPONSIVE
-===================== */
+/* RESPONSIVE */
 @media(max-width:900px){
   .chat-container{
     flex-direction:column;
@@ -215,21 +213,21 @@ body{
   }
 
   .chat-input{
-    position:fixed;
-    bottom:10px;
-    left:50%;
-    transform:translateX(-50%);
-    width:92%;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    z-index: 999;
   }
 
   .messages{
-    margin-bottom:90px;
+    flex: 1;
+    margin-bottom: 70px; /* input ke liye space */
   }
 }
 
-/* =====================
-   ANIMATIONS
-===================== */
+/* ANIMATIONS */
 @keyframes fadeIn{
   from{opacity:0;transform:scale(0.95);}
   to{opacity:1;transform:scale(1);}
@@ -238,48 +236,4 @@ body{
 @keyframes slideUp{
   from{opacity:0;transform:translateY(10px);}
   to{opacity:1;transform:translateY(0);}
-}
-
-
-@media (max-width: 900px) {
-
-  .chat-container{
-    flex-direction: column;
-    height: 100vh;
-    border-radius: 0;
-  }
-
-  .side-info{
-    display: none;
-  }
-
-  .messages{
-    flex: 1;
-    margin-bottom: 80px; /* input ke liye space */
-  }
-
-  .chat-input{
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 92%;
-  }
-}
-
-
-/* scroIII */
-@media (max-width: 900px){
-  .messages{
-    margin-bottom: 120px; /* input ke liye extra space */
-  }
-
-  .chat-input{
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 92%;
-    z-index: 999;
-  }
 }
