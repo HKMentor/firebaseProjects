@@ -240,3 +240,34 @@ body{
   from{opacity:0;transform:translateY(10px);}
   to{opacity:1;transform:translateY(0);}
 }
+
+
+@media(max-width:900px){
+
+  body{
+    align-items:stretch;
+    justify-content:flex-start;
+  }
+
+  .chat-container{
+    flex-direction:column;
+    height:100dvh;
+    border-radius:0;
+  }
+
+  .side-info{
+    display:none;
+  }
+
+  .chat-input{
+    position:sticky;
+    bottom:10px;
+    width:92%;
+    margin:0 auto;
+  }
+
+  .messages{
+    flex:1;
+    margin-bottom:0;
+  }
+}
